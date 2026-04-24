@@ -10,7 +10,7 @@
 | [docs/REQUIREMENTS.md](docs/REQUIREMENTS.md) | Функциональные и нефункциональные требования |
 | [docs/GAME_DESIGN.md](docs/GAME_DESIGN.md) | Игровой дизайн, этапы ретро, локации, визуал |
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Стек, **Go** и Node, WebSocket, WebRTC, монорепо |
-| [docs/CJM.md](docs/CJM.md) | CJM: линейные сценарии (создать, войти, лобби, арена, итог) |
+| [docs/CJM.md](docs/CJM.md) | CJM: **сценарий** (локация + объект сбора), лобби, арена, ретро, **финал** (ЗА/ПРОТИВ) |
 | [docs/E2E.md](docs/E2E.md) | E2E (Playwright) и привязка к CJM |
 | [docs/ROLES_AND_SKILLS.md](docs/ROLES_AND_SKILLS.md) | Роли и навыки (QA, Dev, ревью, PM) |
 | [docs/PROCESS.md](docs/PROCESS.md) | Процесс, тикеты, e2e в CI |
