@@ -14,6 +14,11 @@
 | [docs/CODE_STYLE.md](docs/CODE_STYLE.md) | Правила кода |
 | [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) | Docker, env, раскатка |
 
+## Структура репозитория (монорепо)
+
+- **`apps/client/`** — клиент: браузер, 2D-арена, UI ретро.
+- **`apps/server/`** — сервер: Node, WebSocket, сессии и состояние.
+
 ## Быстрый старт (когда появятся сервисы)
 
 1. Скопируйте `.env.example` в `.env` и задайте переменные.
