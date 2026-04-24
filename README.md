@@ -9,15 +9,18 @@
 | [docs/AGENT.md](docs/AGENT.md) | Память и контекст для агентов, договорённости |
 | [docs/REQUIREMENTS.md](docs/REQUIREMENTS.md) | Функциональные и нефункциональные требования |
 | [docs/GAME_DESIGN.md](docs/GAME_DESIGN.md) | Игровой дизайн, этапы ретро, локации, визуал |
-| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Стек, сеть (WebSocket vs WebRTC), структура |
-| [docs/PROCESS.md](docs/PROCESS.md) | Процесс, тикеты (позже), согласования |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Стек, **Go** и Node, WebSocket, WebRTC, монорепо |
+| [docs/CJM.md](docs/CJM.md) | CJM: линейные сценарии (создать, войти, лобби, арена, итог) |
+| [docs/E2E.md](docs/E2E.md) | E2E (Playwright) и привязка к CJM |
+| [docs/ROLES_AND_SKILLS.md](docs/ROLES_AND_SKILLS.md) | Роли и навыки (QA, Dev, ревью, PM) |
+| [docs/PROCESS.md](docs/PROCESS.md) | Процесс, тикеты, e2e в CI |
 | [docs/CODE_STYLE.md](docs/CODE_STYLE.md) | Правила кода |
 | [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) | Docker, env, раскатка |
 
 ## Структура репозитория (монорепо)
 
 - **`apps/client/`** — клиент: браузер, 2D-арена, UI ретро.
-- **`apps/server/`** — сервер: Node, WebSocket, сессии и состояние.
+- **`apps/server/`** — бэкенд: ожидаемо **Go** (REST, статика клиента, WebSocket, сигналы WebRTC); альтернатива — **Node** (см. `docs/ARCHITECTURE.md`).
 
 ## Быстрый старт (когда появятся сервисы)
 

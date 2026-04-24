@@ -11,12 +11,14 @@
 
 - **Один источник правды по задачам:** GitLab Issues (или Jira, если вынесут — зафиксировать здесь).
 - **Минимальный flow:** ветка от `main` → MR с описанием → мерж после ревью (самoreview на ранних этапах допустим, если согласовано).
-- **CI:** lint + typecheck + unit tests (когда появятся) — **TBD** в `.gitlab-ci.yml`.
+- **CI:** lint + typecheck + unit (когда появятся) + **e2e** (Playwright), см. `docs/E2E.md` — **TBD** в `.gitlab-ci.yml`.
+- **CJM** (`docs/CJM.md`) **—** **ориентир** **для** **приёмки** **и** **e2E**-**карты**; **смена** **потока** **—** **обновлять** **CJM** **+** **E2E** **(или** **осознанный** **gap)**.
 - **Релизы:** теги, **docker** образы — `docs/DEPLOYMENT.md`.
 
 ## Документация
 
-- **Продукт и дизайн:** `REQUIREMENTS.md`, `GAME_DESIGN.md`.
+- **Продукт и дизайн:** `REQUIREMENTS.md`, `GAME_DESIGN.md`, `CJM.md`.
+- **Тесты и роли:** `E2E.md`, `ROLES_AND_SKILLS.md`.
 - **Техника:** `ARCHITECTURE.md`, `DEPLOYMENT.md`, `CODE_STYLE.md`.
 - **Агент и память:** `AGENT.md` — сжатый контекст для сессий ИИ-агентов.
 
