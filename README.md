@@ -21,9 +21,11 @@
 ## Быстрый старт (Docker)
 
 1. Скопировать переменные окружения: `cp .env.example .env` и при необходимости отредактировать.
-2. Запуск: `docker compose up --build` (или без `--build`, если образ уже собран).
+2. Сборка и запуск: `docker compose up --build`.
 
-Сервис `app` в [docker-compose.yml](docker-compose.yml) сейчас — **заглушка** (`traefik/whoami`) для проверки compose; после появления сервера приложения образ/сборку заменят на реальный `Dockerfile`.
+Сервис `app` собирается из [Dockerfile](Dockerfile) (multi-stage: Vite `client/`, бинарник `server/`), публикует порт из `APP_PORT` (см. `.env.example`).
+
+**Локально без Docker:** `cd client && npm install && npm run build`, затем скопировать `client/dist/*` в `server/web/dist/`, после чего `cd server && go run .` (порт `PORT` или `8080`).
 
 ## Монорепо
 
