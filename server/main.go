@@ -2,6 +2,7 @@ package main
 
 import (
 	"embed"
+	"encoding/json"
 	"io"
 	"io/fs"
 	"log"
@@ -9,6 +10,9 @@ import (
 	"os"
 	"path"
 	"strings"
+	"time"
+
+	"rpg-retro/server/internal/room"
 )
 
 //go:embed all:web/dist
@@ -16,11 +20,35 @@ var static embed.FS
 
 func main() {
 	mux := http.NewServeMux()
+	rooms := room.NewStore()
 
 	mux.HandleFunc("GET /health", func(w http.ResponseWriter, _ *http.Request) {
 		w.Header().Set("Content-Type", "text/plain; charset=utf-8")
 		w.WriteHeader(http.StatusOK)
 		_, _ = io.WriteString(w, "ok\n")
+	})
+
+	mux.HandleFunc("POST /api/v1/rooms", func(w http.ResponseWriter, r *http.Request) {
+		created, err := rooms.Create()
+		if err != nil {
+			log.Printf("create room: %v", err)
+			http.Error(w, "internal server error", http.StatusInternalServerError)
+			return
+		}
+		resp := createRoomResponse{
+			RoomID:     created.ID,
+			InviteCode: created.InviteCode,
+			CreatedAt:  created.CreatedAt.Format(time.RFC3339Nano),
+			Paths: roomPaths{
+				G:    "/g/" + created.InviteCode,
+				Join: "/join/" + created.InviteCode,
+			},
+		}
+		w.Header().Set("Content-Type", "application/json; charset=utf-8")
+		w.WriteHeader(http.StatusCreated)
+		if err := json.NewEncoder(w).Encode(resp); err != nil {
+			log.Printf("encode create room: %v", err)
+		}
 	})
 
 	fsys, err := fs.Sub(static, "web/dist")
@@ -38,6 +66,18 @@ func main() {
 	if err := http.ListenAndServe(addr, mux); err != nil {
 		log.Fatal(err)
 	}
+}
+
+type createRoomResponse struct {
+	RoomID     string    `json:"roomId"`
+	InviteCode string    `json:"inviteCode"`
+	CreatedAt  string    `json:"createdAt"`
+	Paths      roomPaths `json:"paths"`
+}
+
+type roomPaths struct {
+	G    string `json:"g"`
+	Join string `json:"join"`
 }
 
 type spaFileServer struct{ fsys fs.FS }

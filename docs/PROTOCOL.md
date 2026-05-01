@@ -18,6 +18,14 @@
 
 - **Dynamic** `import('phaser')` в коде, который грузится **только** при входе на маршрут арены. См. [ADR 0003](adr/0003-client-rendering-phaser.md).
 
+## HTTP (создание комнаты)
+
+- **`POST /api/v1/rooms`** — создать room в памяти; тело запроса пустое (v0.1). Ответ **201** JSON:
+  - `roomId` — внутренний идентификатор;
+  - `inviteCode` — ключ для path (`/g/{inviteCode}`);
+  - `createdAt` — RFC3339Nano (UTC);
+  - `paths` — `{ "g": "/g/{inviteCode}", "join": "/join/{inviteCode}" }` для копирования на клиенте.
+
 ## WebSocket (детализация по мере кода)
 
 - Подключение, когда заданы `inviteCode` из path, **displayName** с арены, при необходимости id сессии — типы в `server/`.  
