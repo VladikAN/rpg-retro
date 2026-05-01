@@ -1,10 +1,12 @@
 services:
-  # Временная заглушка: заменить на сборку rpg-retro (Go + статика клиента), когда появится Dockerfile.
   app:
-    image: traefik/whoami:v3.2
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "${APP_PORT:-8080}:80"
+      - "${APP_PORT:-8080}:8080"
     env_file:
       - .env
     environment:
+      PORT: 8080
       APP_ENV: ${APP_ENV:-development}

@@ -1,9 +1,12 @@
 .env
 node_modules/
-dist/
+client/dist/
 build/
 *.log
 .DS_Store
+
+# Local screenshots / agent artifacts (attach to chat or PR elsewhere)
+artifacts/
 
 # IDE / OS
 .idea/
